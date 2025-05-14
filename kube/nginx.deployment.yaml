@@ -29,5 +29,10 @@ spec:
                 configMapKeyRef:
                   name: nginx-configmap-env
                   key: NGINX_PORT
+            - name: PROXY_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: nginx-configmap-env
+                  key: PROXY_URL
           ports:
             - containerPort: 80

@@ -27,12 +27,7 @@ spec:
             - name: PORT
               valueFrom:
                 configMapKeyRef:
-                  name: nginx-configmap-env
+                  name: node-configmap-env
                   key: PORT
-            - name: PROXY_URL
-              valueFrom:
-                configMapKeyRef:
-                  name: nginx-configmap-env
-                  key: PROXY_URL
           ports:
             - containerPort: 3000

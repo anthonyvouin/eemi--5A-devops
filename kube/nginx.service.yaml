@@ -12,6 +12,6 @@ spec:
     component: backend
     resource: nginx
   ports:
-    - port: 8083
+    - port: 8084
       targetPort: 80
   type: LoadBalancer
