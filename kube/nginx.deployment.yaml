@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+      app: kube-tp1
+      component: backend
+      resource: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: kube-tp1
+      component: backend
+      resource: nginx
+  template:
+    metadata:
+      labels:
+        app: kube-tp1
+        component: backend
+        resource: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: kmarques/demo-nginx:amd64
+          env:
+            - name: NGINX_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: nginx-configmap-env
+                  key: NGINX_PORT
+          ports:
+            - containerPort: 80

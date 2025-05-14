@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-deployment
+  labels:
+      app: kube-tp1
+      component: backend
+      resource: node
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: kube-tp1
+      component: backend
+      resource: node
+  template:
+    metadata:
+      labels:
+        app: kube-tp1
+        component: backend
+        resource: node
+    spec:
+      containers:
+        - name: backend
+          image: kmarques/demo-node:amd64
+          env:
+            - name: PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: nginx-configmap-env
+                  key: PORT
+            - name: PROXY_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: nginx-configmap-env
+                  key: PROXY_URL
+          ports:
+            - containerPort: 3000

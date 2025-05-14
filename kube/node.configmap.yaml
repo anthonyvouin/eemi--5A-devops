@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: node-configmap-env
+data:
+  PORT: "3000"
+  PROXY_URL: http://localhost:3000
+
